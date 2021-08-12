@@ -19,3 +19,13 @@ A minimum spanning tree has (V – 1) edges where V is the number of vertices in
               |      \ |
               2--------3
 
+The MST will have the following edges:
+
+2 -- 3 == 4
+
+0 -- 3 == 5
+
+0 -- 1 == 10
+
+Minimum Cost Spanning Tree: 19
+
