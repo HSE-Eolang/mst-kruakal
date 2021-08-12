@@ -29,3 +29,7 @@ The MST will have the following edges:
 
 Minimum Cost Spanning Tree: 19
 
+Kruskal's algorithm
+
+Time Complexity: O(ElogV)
+
