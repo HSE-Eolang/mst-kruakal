@@ -23,9 +23,9 @@
 #                  4
 
 [] > mstKruskal
-  edge E > newEdge # to be revised
 
-  # create graph with V vertices and E edges
+  # create graph with vertices and edges
+  array > graph
 
   # add edge 0-1
   edge 0 1 10 > edge1
@@ -43,12 +43,13 @@
   edge 2 3 4 > edge5
   graph.append edge5
 
+  sortEdges graph > sortedEdges
+
+  # edge object
   [src dest weight] > edge
     # comparator for sorting edges based on their weight
     [edge] > compareTo
       weight.sub edge.weight > @
-
-  sortEdges graph > sortedEdges
 
   # subset for union-find
   [parent rank] > subset
@@ -73,7 +74,6 @@
         (subsets.get yRoot).parent # = xRoot # To Do subsets.get xRoot.rank plus 1
 
   # sort all edges
-  # To do
   [arr] > sortEdges
     subSort > @
       array
@@ -88,19 +88,52 @@
       subSort
         append.
           accumulator
-          arrMin
+          findMin
             arr
         removeAt
           arr
           indexOfMin
             arr
 
-  [arr1 arr2] > merge
+  [arr] > indexOfMin
+    indexOf > @
+      arr
+      findMin
+        arr
+
+  [arr elem] > indexOf
+    subIndexOf > @
+      arr
+      elem
+      0
+
+  [arr elem i] > subIndexOf
+    if. > @
+      eq.
+        arr.length
+        i
+      -1
+      if.
+        eq.
+          elem.weight
+          (arr.get i).weight
+        i
+        subIndexOf
+          arr
+          elem
+          add.
+            i
+            1
+
+  [arr] > findMin
     reduce. > @
-      arr2
-      arr1
+      arr
+      arr.get 0
       [accumulator current]
-        append. > @
+        if. > @
+          less.
+            accumulator.weight
+            current.weight
           accumulator
           current
 
@@ -114,6 +147,15 @@
         add.
           i
           1
+
+  [arr1 arr2] > merge
+    reduce. > @
+      arr2
+      arr1
+      [accumulator current]
+        append. > @
+          accumulator
+          current
 
   [arr end] > arrSliceFromStartTo
     subArrSlice > @
@@ -155,36 +197,5 @@
           [accumulator current] > reduce
             if. > @
 
-  [arr] > indexOfMin
-    indexOf > @
-      arr
-      arrMin
-        arr
-
-  [arr elem] > indexOf
-    subIndexOf > @
-      arr
-      elem
-      0
-
-  [arr] > arrMin
-    reduce. > @
-      arr
-      arr.get 0
-      [accumulator current]
-        if. > @
-          less.
-            accumulator
-            current
-          accumulator
-          current
-
-  [edges...] > array
-    edges > @
-  [edges...] > graph
-    edges > @
-
-  [v e] > graph
-    edge > newEdge
-
-
+  [elements...] > array
+    elements > @
