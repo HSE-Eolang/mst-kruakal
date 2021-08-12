@@ -11,7 +11,7 @@ A minimum spanning tree has (V – 1) edges where V is the number of vertices in
 2. (Union-Find algorithm) Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far.    If cycle is not formed, include this edge. Else, discard it.
 3. Repeat step no. 2 until there are (V-1) edges in the spanning tree.
 
-#  Example (MST):
+#  Example (Spanning Tree):
                   10
               0--------1
               |  \     |
