@@ -70,6 +70,7 @@
         (subsets.get yRoot).parent # = xRoot # To Do subsets.get xRoot.rank plus 1
 
   # sort all edges
+  # To do
   [arr] > sortEdges
     subSort > @
       array
