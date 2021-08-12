@@ -1,3 +1,5 @@
+# Eolang
+
 ## Minimum spanning Tree using Kruskal's algorithm 
 A minimum spanning tree (MST) or minimum weight spanning tree for a weighted, connected,
 undirected graph is a spanning tree with a weight less than or equal to the weight of
@@ -18,6 +20,7 @@ A minimum spanning tree has (V – 1) edges where V is the number of vertices in
              6|   5\   |15
               |      \ |
               2--------3
+                  4
 
 The MST will have the following edges:
 
@@ -31,5 +34,5 @@ Minimum Cost Spanning Tree: 19
 
 Kruskal's algorithm
 
-Time Complexity: O(ElogV)
+Time Complexity: O(E log V)
 

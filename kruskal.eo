@@ -20,6 +20,7 @@
 #             6|   5\   |15
 #              |      \ |
 #              2--------3
+#                  4
 
 [] > mstKruskal
   edge E > newEdge # to be revised
