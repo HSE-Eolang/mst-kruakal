@@ -1,0 +1,157 @@
++package sandbox
++alias sprintf org.eolang.txt.sprintf
+
+#  A minimum spanning tree (MST) or minimum weight spanning tree for a weighted, connected,
+#  undirected graph is a spanning tree with a weight less than or equal to the weight of
+#  every other spanning tree.
+#  The weight of a spanning tree is the sum of weights given to each edge of the spanning tree.
+#  A minimum spanning tree has (V – 1) edges where V is the number of vertices in the given graph.
+#  To find the MST using the Kruskal's algorithm
+#  1. Sort all the edges in non-decreasing order of their weight.
+#  2. Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far.
+#     If cycle is not formed, include this edge. Else, discard it.
+#  3. Repeat step no. 2 until there are (V-1) edges in the spanning tree.
+
+[V E] > graph
+  edge E > newEdge # to be revised
+  # create graph with V vertices and E edges
+
+  [src dest weight] > edge
+    # comparator for sorting edges based on their weight
+    [edge] > compareTo
+      weight.sub edge.weight > @
+
+  [parent rank] > subset
+
+  # A utility function to find the subset of an element i
+  [subsets i] > unionFind
+    if. > @
+      ((subsets.get i).parent.neq i)
+      unionFind subsets (subsets.get i).parent > # (subsets.get i).parent
+      (subsets.get i).parent
+
+  # A utility function to do union of two subsets (To do parent[x] = y)
+  [subsets x y] > union
+    unionFind subset x > xRoot
+    unionFind subset y > yRoot
+    if. > @
+      (subsets.get xRoot).rank.less (subsets.get yRoot).rank
+      (subsets.get xRoot).parent # = yRoot # To Do
+      if.
+        (subsets.get xRoot).rank.greater (subsets.get yRoot).rank
+        (subsets.get yRoot).parent # = xRoot # To Do
+        (subsets.get yRoot).parent # = xRoot # To Do subsets.get xRoot.rank plus 1
+
+  # sort all edges
+  [arr] > sortEdges
+    subSort > @
+      array
+      arr
+      []
+        [accumulator arr] > subSort
+          if. > @
+            eq.
+              arr.length
+              0
+            accumulator
+            subSort
+              append.
+                accumulator
+                arrMin
+                  arr
+              removeAt
+                arr
+                indexOfMin
+                  arr
+
+  [arr1 arr2] > merge
+    reduce. > @
+      arr2
+      arr1
+      [accumulator current]
+        append. > @
+          accumulator
+          current
+
+  [arr i] > removeAt
+    merge > @
+      arrSliceFromStartTo
+        arr
+        i
+      arrSliceToEndFrom
+        arr
+        add.
+          i
+          1
+
+  [arr end] > arrSliceFromStartTo
+    subArrSlice > @
+      arr
+      array
+      0
+      end
+
+  [arr start] > arrSliceToEndFrom
+    subArrSlice > @
+      arr
+      array
+      start
+      arr.length
+
+  [arr accumulator start end] > subArrSlice
+    if. > @
+      less.
+        start
+        end
+      subArrSlice
+        arr
+        append.
+          accumulator
+          get.
+            arr
+            start
+        add.
+          start
+          1
+        end
+      accumulator
+
+  [V E] > kruskalMST
+    reduce. > @
+        subsets
+        0
+        []
+          [accumulator current] > reduce
+            if. > @
+
+  [arr] > indexOfMin
+    indexOf > @
+      arr
+      arrMin
+        arr
+
+  [arr elem] > indexOf
+    subIndexOf > @
+      arr
+      elem
+      0
+
+  [arr] > arrMin
+    reduce. > @
+      arr
+      arr.get 0
+      [accumulator current]
+        if. > @
+          less.
+            accumulator
+            current
+          accumulator
+          current
+
+  [edges...] > array
+    edges > @
+
+  [v e] > graph
+    edge > newEdge
+
+
