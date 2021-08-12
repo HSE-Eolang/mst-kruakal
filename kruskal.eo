@@ -28,24 +28,26 @@
 
   # add edge 0-1
   edge 0 1 10 > edge1
-  array.append edge1
+  graph.append edge1
   # add edge 0-2
   edge 0 2 6 > edge2
-  array.append edge2
+  graph.append edge2
   # add edge 0-3
   edge 0 3 5 > edge3
-  array.append edge3
+  graph.append edge3
   # add edge 1-3
   edge 1 3 15 > edge4
-  array.append edge4
+  graph.append edge4
   # add edge 2-3
   edge 2 3 4 > edge5
-  array.append edge5
+  graph.append edge5
 
   [src dest weight] > edge
     # comparator for sorting edges based on their weight
     [edge] > compareTo
       weight.sub edge.weight > @
+
+  sortEdges graph > sortedEdges
 
   # subset for union-find
   [parent rank] > subset
@@ -177,6 +179,8 @@
           current
 
   [edges...] > array
+    edges > @
+  [edges...] > graph
     edges > @
 
   [v e] > graph
