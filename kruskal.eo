@@ -77,22 +77,22 @@
     subSort > @
       array
       arr
-      []
-        [accumulator arr] > subSort
-          if. > @
-            eq.
-              arr.length
-              0
-            accumulator
-            subSort
-              append.
-                accumulator
-                arrMin
-                  arr
-              removeAt
-                arr
-                indexOfMin
-                  arr
+
+  [accumulator arr] > subSort
+    if. > @
+      eq.
+        arr.length
+        0
+      accumulator
+      subSort
+        append.
+          accumulator
+          arrMin
+            arr
+        removeAt
+          arr
+          indexOfMin
+            arr
 
   [arr1 arr2] > merge
     reduce. > @
