@@ -25,17 +25,17 @@
 [] > mstKruskal
   array > mst
 
-  # step 2
   reduce. > findMst # To Do
     sortedEdges
     mst
     []
       [accumulator current] > reduce
-        unionFind subsets
+        unionFind subsets next_edge.src > x
+        unionFind subsets next_edge.dest > y
         if. > @
-          isCycle current
-          mst
+          x.neq y
           mst.append current
+          mst
 
   # create graph with vertices and edges
   array > graph
@@ -58,7 +58,8 @@
 
   # Step 1:  Sort all the edges in non-decreasing
   sortEdges graph > sortedEdges
-  array > subsets
+
+  [subset...] > subsets
 
 
   # edge object
