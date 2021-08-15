@@ -23,6 +23,19 @@
 #                  4
 
 [] > mstKruskal
+  array > mst
+
+  # step 2
+  reduce. > findMst # To Do
+    sortedEdges
+    mst
+    []
+      [accumulator current] > reduce
+        unionFind subsets
+        if. > @
+          isCycle current
+          mst
+          mst.append current
 
   # create graph with vertices and edges
   array > graph
@@ -43,13 +56,13 @@
   edge 2 3 4 > edge5
   graph.append edge5
 
+  # Step 1:  Sort all the edges in non-decreasing
   sortEdges graph > sortedEdges
+  array > subsets
+
 
   # edge object
   [src dest weight] > edge
-    # comparator for sorting edges based on their weight
-    [edge] > compareTo
-      weight.sub edge.weight > @
 
   # subset for union-find
   [parent rank] > subset
@@ -139,10 +152,10 @@
 
   [arr i] > removeAt
     merge > @
-      arrSliceFromStartTo
+      sliceFromStartTo
         arr
         i
-      arrSliceToEndFrom
+      sliceToEndFrom
         arr
         add.
           i
@@ -157,26 +170,26 @@
           accumulator
           current
 
-  [arr end] > arrSliceFromStartTo
-    subArrSlice > @
+  [arr end] > sliceFromStartTo
+    slice > @
       arr
       array
       0
       end
 
-  [arr start] > arrSliceToEndFrom
-    subArrSlice > @
+  [arr start] > sliceToEndFrom
+    slice > @
       arr
       array
       start
       arr.length
 
-  [arr accumulator start end] > subArrSlice
+  [arr accumulator start end] > slice
     if. > @
       less.
         start
         end
-      subArrSlice
+      slice
         arr
         append.
           accumulator
@@ -189,13 +202,18 @@
         end
       accumulator
 
-  [V E] > kruskalMST
+  [arr item] > includes # To Do
     reduce. > @
-        subsets
-        0
-        []
-          [accumulator current] > reduce
-            if. > @
+      arr
+      false
+      []
+        [accumulator current] > reduce
+          if. > @
+            current.src.eq item
+            true
+            false
+
+  [edge] > isCycle # To do
 
   [elements...] > array
     elements > @
