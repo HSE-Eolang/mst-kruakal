@@ -72,20 +72,20 @@
   [subsets i] > unionFind
     if. > @
       ((subsets.get i).parent.neq i)
-      unionFind subsets (subsets.get i).parent > # (subsets.get i).parent
+      unionFind subsets (subsets.get i).parent
       (subsets.get i).parent
 
-  # A utility function to do union of two subsets (To do parent[x] = y)
+  # A utility function to do union of two subsets
   [subsets x y] > union
     unionFind subset x > xRoot
     unionFind subset y > yRoot
     if. > @
       (subsets.get xRoot).rank.less (subsets.get yRoot).rank
-      (subsets.get xRoot).parent # = yRoot # To Do
+      (subsets.get xRoot).parent
       if.
         (subsets.get xRoot).rank.greater (subsets.get yRoot).rank
-        (subsets.get yRoot).parent # = xRoot # To Do
-        (subsets.get yRoot).parent # = xRoot # To Do subsets.get xRoot.rank plus 1
+        (subsets.get yRoot).parent
+        (subsets.get yRoot).parent
 
   # sort all edges
   [arr] > sortEdges
