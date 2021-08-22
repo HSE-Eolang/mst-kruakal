@@ -68,14 +68,14 @@
   # subset for union-find
   [parent rank] > subset
 
-  # A utility function to find the subset of an element i
+  # find the subset of an element i
   [subsets i] > unionFind
     if. > @
       ((subsets.get i).parent.neq i)
       unionFind subsets (subsets.get i).parent
       (subsets.get i).parent
 
-  # A utility function to do union of two subsets
+  # union of two subsets
   [subsets x y] > union
     unionFind subset x > xRoot
     unionFind subset y > yRoot
@@ -213,6 +213,8 @@
             current.src.eq item
             true
             false
+
+  [subsets] > countEdges
 
   [edge] > isCycle # To do
 
